@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Death App Simulator</title>
+    <title>NEET Simulator</title>
     <style>
         body {
             background-color: #121212;
@@ -19,19 +19,40 @@
             background-color: #1e1e1e;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 150, 255, 0.2);
             text-align: center;
-            max-width: 400px;
+            max-width: 450px;
             width: 90%;
             border: 1px solid #333;
         }
         h1 {
-            color: #cf6679;
+            color: #64b5f6;
             font-size: 24px;
             margin-bottom: 20px;
         }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            font-size: 14px;
+            color: #b0bec5;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #0d0d0d;
+            border: 1px solid #333;
+            color: #e0e0e0;
+            font-family: 'Courier New', Courier, monospace;
+            border-radius: 5px;
+            font-size: 16px;
+        }
         button {
-            background-color: #b00020;
+            background-color: #1976d2;
             color: white;
             border: none;
             padding: 12px 24px;
@@ -40,69 +61,78 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s;
+            width: 100%;
             margin-bottom: 20px;
         }
         button:hover {
-            background-color: #cf6679;
+            background-color: #2196f3;
         }
         #output {
             background-color: #0d0d0d;
             padding: 15px;
             border-radius: 5px;
-            min-height: 100px;
+            min-height: 120px;
             text-align: left;
             font-size: 14px;
             white-space: pre-line;
             border: 1px solid #333;
             color: #ffb74d;
+            max-height: 200px;
+            overflow-y: auto;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Fate Simulator</h1>
-        <button onclick="runSimulation()">Test Your Fate</button>
-        <div id="output">Press the button to run the trials...</div>
+        <h1>NEET Simulator</h1>
+        <div class="input-group">
+            <label for="trialInput">Enter number of trial runs:</label>
+            <input type="number" id="trialInput" min="1" max="30" value="5">
+        </div>
+        <button onclick="runSimulation()">Attempt Counseling</button>
+        <div id="output">Enter trials and press the button to check your allotment status...</div>
     </div>
 
     <script>
         const deathMessages = [
-            "User will never see the ground again.",
-            "User's heart stops, but user's body keeps moving.",
-            "User is torn apart by unseen forces.",
-            "User's fate is sealed, and user can't escape it.",
-            "The pain is overwhelming as user disintegrates.",
-            "User's soul is ripped from user's body, leaving nothing behind.",
-            "User is thrown into the abyss, never to return.",
-            "User is crushed by an invisible force, leaving just a small crater.",
-            "User's body is torn to shreds, piece by piece.",
-            "User is engulfed by a black hole, pulled into the unknown.",
-            "User is electrocuted by an unseen current, sparks flying in every direction.",
-            "User's head is violently pulled from user's body, leaving a mess.",
-            "User is impaled by a sharp, unseen object, tearing through user's flesh.",
-            "User is suffocated by an unseen hand, choking on air that isn't there.",
-            "User is burned by a fire user can't see, user's flesh melting away.",
-            "User is frozen solid, turned to ice by an unseen force.",
-            "User is disintegrated by an invisible energy field.",
-            "User is impaled by a shard of glass, slicing through user's body.",
-            "User is crushed by a falling object, user's bones shattered.",
-            "User is drowned in a sea of blood, user's heart stopping in the process.",
-            "User is electrocuted by a deadly shock, user's body convulsing violently.",
-            "User is crushed by a massive weight, user's bones and organs compressed.",
-            "User is torn apart by unseen hands, each limb pulled in different directions.",
-            "User is impaled by a jagged piece of metal, user's body pinned to the ground."
+            "User will never see a medical college campus again.",
+            "User's drop year continues, but user's sanity keeps fading.",
+            "User is torn apart by NTA's unexpected rank inflation.",
+            "User's cutoff is sealed, and user can't escape the general category trap.",
+            "The pain is overwhelming as user recalculates chemistry marks.",
+            "User's soul is ripped from user's body, leaving behind only NCERT textbooks.",
+            "User is thrown into the drop-year abyss, never to return to college.",
+            "User is crushed by an invisible cutoff rank, leaving just a low percentile.",
+            "User's physics numericals are torn to shreds, piece by piece.",
+            "User is engulfed by a counseling black hole, pulled into private college fee structures.",
+            "User is electrocuted by high-yield organic chemistry exceptions, sparks flying in every direction.",
+            "User's hopes of a white coat are violently pulled away, leaving a mess.",
+            "User is impaled by a sharp, unseen negative marking penalty, tearing through user's total score.",
+            "User is suffocated by parental expectations, choking on air that isn't there.",
+            "User is burned by mock test burnout user can't fix, user's motivation melting away.",
+            "User is frozen solid, turned to ice by an unexpected physics section B.",
+            "User is disintegrated by an invisible normalization formula.",
+            "User is impaled by a difficult biology statement-based question, slicing through user's rank.",
+            "User is crushed by a falling drop-year attempt counter, user's mental peace shattered.",
+            "User is drowned in a sea of previous year question papers, user's heart stopping in the process.",
+            "User is electrocuted by a sudden exam pattern change, user's body convulsing violently.",
+            "User is crushed by a massive syllabus weight, user's memory and stamina compressed.",
+            "User is torn apart by counseling rounds, each choice locking in different directions.",
+            "User is impaled by a missed seat allotment by 0.5 marks, user's dreams pinned to the ground."
         ];
 
-        function getRandomInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-
         function runSimulation() {
-            let numAttempts = getRandomInt(1, 15);
-            let outputText = `Trials to run: ${numAttempts}\n\n`;
+            let inputVal = document.getElementById("trialInput").value;
+            let numAttempts = parseInt(inputVal);
+
+            if (isNaN(numAttempts) || numAttempts < 1) {
+                numAttempts = 1;
+            } else if (numAttempts > 50) {
+                numAttempts = 50; // Cap to avoid overflow
+            }
+
+            let outputText = `Target Trials: ${numAttempts}\n\n`;
 
             for (let attempt = 0; attempt <= numAttempts; attempt++) {
                 outputText += `Trial ${attempt}\n`;
