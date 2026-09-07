@@ -6,8 +6,8 @@
     <title>NEET Simulator</title>
     <style>
         body {
-            background-color: #121212;
-            color: #e0e0e0;
+            background-color: #0c0202;
+            color: #fce8e6;
             font-family: 'Courier New', Courier, monospace;
             display: flex;
             justify-content: center;
@@ -16,19 +16,20 @@
             margin: 0;
         }
         .container {
-            background-color: #1e1e1e;
+            background-color: #160404;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 150, 255, 0.2);
+            box-shadow: 0 4px 25px rgba(255, 0, 0, 0.35);
             text-align: center;
             max-width: 450px;
             width: 90%;
-            border: 1px solid #333;
+            border: 1px solid #4a0d0d;
         }
         h1 {
-            color: #64b5f6;
+            color: #ff2a2a;
             font-size: 24px;
             margin-bottom: 20px;
+            text-shadow: 0 0 8px rgba(255, 42, 42, 0.6);
         }
         .input-group {
             margin-bottom: 15px;
@@ -36,7 +37,7 @@
         }
         label {
             font-size: 14px;
-            color: #b0bec5;
+            color: #d18a8a;
             display: block;
             margin-bottom: 5px;
         }
@@ -44,39 +45,45 @@
             width: 100%;
             padding: 10px;
             box-sizing: border-box;
-            background-color: #0d0d0d;
-            border: 1px solid #333;
-            color: #e0e0e0;
+            background-color: #070101;
+            border: 1px solid #571515;
+            color: #ff9e9e;
             font-family: 'Courier New', Courier, monospace;
             border-radius: 5px;
             font-size: 16px;
         }
+        input:focus {
+            outline: none;
+            border-color: #ff2a2a;
+        }
         button {
-            background-color: #1976d2;
-            color: white;
+            background-color: #800000;
+            color: #ffffff;
             border: none;
             padding: 12px 24px;
             font-size: 16px;
             font-family: 'Courier New', Courier, monospace;
             border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s, box-shadow 0.3s;
             width: 100%;
             margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(128, 0, 0, 0.5);
         }
         button:hover {
-            background-color: #2196f3;
+            background-color: #a80000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
         }
         #output {
-            background-color: #0d0d0d;
+            background-color: #080101;
             padding: 15px;
             border-radius: 5px;
             min-height: 120px;
             text-align: left;
             font-size: 14px;
             white-space: pre-line;
-            border: 1px solid #333;
-            color: #ffb74d;
+            border: 1px solid #421010;
+            color: #ff6b6b;
             max-height: 200px;
             overflow-y: auto;
         }
@@ -88,7 +95,7 @@
         <h1>NEET Simulator</h1>
         <div class="input-group">
             <label for="trialInput">Enter number of trial runs:</label>
-            <input type="number" id="trialInput" min="1" max="30" value="5">
+            <input type="number" id="trialInput" min="1" max="50" value="5">
         </div>
         <button onclick="runSimulation()">Attempt Counseling</button>
         <div id="output">Enter trials and press the button to check your allotment status...</div>
@@ -129,7 +136,7 @@
             if (isNaN(numAttempts) || numAttempts < 1) {
                 numAttempts = 1;
             } else if (numAttempts > 50) {
-                numAttempts = 50; // Cap to avoid overflow
+                numAttempts = 50; 
             }
 
             let outputText = `Target Trials: ${numAttempts}\n\n`;
