@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death App Simulator</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid #333;
+        }
+        h1 {
+            color: #cf6679;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #b00020;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-family: 'Courier New', Courier, monospace;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: #cf6679;
+        }
+        #output {
+            background-color: #0d0d0d;
+            padding: 15px;
+            border-radius: 5px;
+            min-height: 100px;
+            text-align: left;
+            font-size: 14px;
+            white-space: pre-line;
+            border: 1px solid #333;
+            color: #ffb74d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Fate Simulator</h1>
+        <button onclick="runSimulation()">Test Your Fate</button>
+        <div id="output">Press the button to run the trials...</div>
+    </div>
+
+    <script>
+        const deathMessages = [
+            "User will never see the ground again.",
+            "User's heart stops, but user's body keeps moving.",
+            "User is torn apart by unseen forces.",
+            "User's fate is sealed, and user can't escape it.",
+            "The pain is overwhelming as user disintegrates.",
+            "User's soul is ripped from user's body, leaving nothing behind.",
+            "User is thrown into the abyss, never to return.",
+            "User is crushed by an invisible force, leaving just a small crater.",
+            "User's body is torn to shreds, piece by piece.",
+            "User is engulfed by a black hole, pulled into the unknown.",
+            "User is electrocuted by an unseen current, sparks flying in every direction.",
+            "User's head is violently pulled from user's body, leaving a mess.",
+            "User is impaled by a sharp, unseen object, tearing through user's flesh.",
+            "User is suffocated by an unseen hand, choking on air that isn't there.",
+            "User is burned by a fire user can't see, user's flesh melting away.",
+            "User is frozen solid, turned to ice by an unseen force.",
+            "User is disintegrated by an invisible energy field.",
+            "User is impaled by a shard of glass, slicing through user's body.",
+            "User is crushed by a falling object, user's bones shattered.",
+            "User is drowned in a sea of blood, user's heart stopping in the process.",
+            "User is electrocuted by a deadly shock, user's body convulsing violently.",
+            "User is crushed by a massive weight, user's bones and organs compressed.",
+            "User is torn apart by unseen hands, each limb pulled in different directions.",
+            "User is impaled by a jagged piece of metal, user's body pinned to the ground."
+        ];
+
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function runSimulation() {
+            let numAttempts = getRandomInt(1, 15);
+            let outputText = `Trials to run: ${numAttempts}\n\n`;
+
+            for (let attempt = 0; attempt <= numAttempts; attempt++) {
+                outputText += `Trial ${attempt}\n`;
+            }
+
+            let finalMessage = deathMessages[Math.floor(Math.random() * deathMessages.length)];
+            outputText += `\n${finalMessage}`;
+
+            document.getElementById("output").innerText = outputText;
+        }
+    </script>
+
+</body>
+</html>
